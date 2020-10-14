@@ -23,4 +23,15 @@ def re_sub(text, patterns: dict):
                 text[text.notna()] = text[text.notna()].apply(lambda x: re.sub(pattern, patterns[pattern], x))
 
         return text
+
+def filt(text, only_hangul=False, replace=" "):
+    
+    assert isinstance(text, pd.core.series.Series)
+
+    pattern = "[^ㄱ-ㅎㅏ-ㅣ가-힣]" if only_hangul else "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9&]"
+    
+    text[text.notna()] = text[text.notna()].apply(lambda x: re.sub(pattern, replace, x))
+    text[text.notna()] = text[text.notna()].apply(lambda x: re.sub("\s+", replace, x))
+    
+    return text.str.strip()
 ~   
