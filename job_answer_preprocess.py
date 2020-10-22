@@ -17,4 +17,50 @@ def re_sub(text, patterns: dict):
                 text[text.notna()] = text[text.notna()].apply(lambda x: re.sub(pattern, patterns[pattern], x))
 
         return text
-~   
+
+# 회사명 전처리
+def preprocess_company(data):
+    
+    assert isinstance(data, pd.core.frame.DataFrame)
+    
+    data["회사명"] = data["회사명"].str.lower() # 소문자로 변경
+    data["회사명"] = str_replace(data["회사명"], patterns=["㈜", "주식회사"]) # pattenrs 공백으로 처리
+    data["회사명"] = re_sub(data["회사명"], patterns={r"\([^)]*\)": " " }) # pstterns에 해당되는 부분 공백으로 처리
+    data["회사명"] = filt(data["회사명"])
+
+    return data
+
+# 소제목 추출
+def title(data):
+    
+    assert isinstance(data, pd.core.frame.DataFrame)
+    
+    data = data.sort_index()
+    data2 = data.copy()
+    data2["답변"] = re_sub(data2["답변"], patterns={ 
+        "\r\n\"": "{",    #소제목에 해당되는 패턴 정의
+        "\"\r": "}",
+        "\s*\[": "{",
+        "\]": "}",
+        "[\s]": " "
+    })
+    
+    title_yes = data2[data2["답변"].str.contains('{' and '}')]
+    index = title_yes.index
+    title_no = data2.drop(index)
+    
+    # 소제목이 없는 부분
+    title_no["제목"] = np.nan
+    
+    # 소제목이 있는 부분
+    title_yes["제목"] = re_sub(title_yes["답변"], patterns={
+        "\{": "",
+        "\}.*": ""
+    })
+    
+    # 데이터 통합
+    title = pd.concat([title_yes["제목"], title_no["제목"]], axis=0).sort_index()
+    data["소제목"] = title
+    
+    return data
+   
