@@ -24,6 +24,19 @@ def re_sub(text, patterns: dict):
 
         return text
 
+# 텍스트 최종 체크 함수
+def filt(text, only_hangul=False, replace=" "):
+    
+    assert isinstance(text, pd.core.series.Series)
+
+    pattern = "[^ㄱ-ㅎㅏ-ㅣ가-힣]" if only_hangul else "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9&]"
+    
+    text[text.notna()] = text[text.notna()].apply(lambda x: re.sub(pattern, replace, x))
+    text[text.notna()] = text[text.notna()].apply(lambda x: re.sub("\s+", replace, x))
+    
+    return text.str.strip()
+
+
 # 회사명 전처리
 def preprocess_company(data):
     
@@ -35,6 +48,7 @@ def preprocess_company(data):
     data["회사명"] = filt(data["회사명"])
 
     return data
+
 
 # 소제목 추출
 def title(data):
@@ -69,15 +83,38 @@ def title(data):
     data["소제목"] = title
     
     return data
-   
-def filt(text, only_hangul=False, replace=" "):
-    
-    assert isinstance(text, pd.core.series.Series)
 
-    pattern = "[^ㄱ-ㅎㅏ-ㅣ가-힣]" if only_hangul else "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9&]"
+# 자기소개서 답변 전처리 함수
+def preprocess_answer(data):
     
-    text[text.notna()] = text[text.notna()].apply(lambda x: re.sub(pattern, replace, x))
-    text[text.notna()] = text[text.notna()].apply(lambda x: re.sub("\s+", replace, x))
+    assert isinstance(data, pd.core.frame.DataFrame)
     
-    return text.str.strip()
+    data = title(data)
+    data["답변"] = data["답변"].str.lower()
+    data["답변"] = re_sub(data["답변"], patterns={
+        "아쉬운점\s\d": " ",
+        "좋은점\s\d": " ",
+        "글자수\s\d{1,}[,]?\d{1,}자\d{1,}[,]?\d{1,}byte": " ",
+        "[.]{1,}": " ",
+        "[,]{1,}": " ",
+        "o{3,}": " ",
+        "[\s]": " "
+    })
+    data["답변"] = filt(data["답변"])
+    data["답변"] = _filt_and_trim(data["답변"])
+    
+    return data
 
+# 직무분야 분리 함수
+def preprocess_job(data):
+    
+    
+    data["직무분야"] = data["직무분야"].str.split("·") # ·기준으로 split
+    
+    for i in range(data["직무분야"].apply(lambda x: len(x)).max()):
+        index = data["직무분야"].apply(lambda x: len(x) >= (i+1))
+        data.loc[index, f"직무분야{i+1}"] = data.loc[index, "직무분야"].apply(lambda x: x[i])
+    
+    data.drop(columns=["직무분야"], inplace=True)
+    
+    return data
