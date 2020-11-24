@@ -46,7 +46,8 @@ def preprocess_company(data):
     data["회사명"] = str_replace(data["회사명"], patterns=["㈜", "주식회사"]) # pattenrs 공백으로 처리
     data["회사명"] = re_sub(data["회사명"], patterns={r"\([^)]*\)": " " }) # pstterns에 해당되는 부분 공백으로 처리
     data["회사명"] = filt(data["회사명"])
-
+    data.loc[data["회사명"].str[0] == "셰", "회사명"] = "셰플러코리아"
+    
     return data
 
 
