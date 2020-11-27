@@ -102,7 +102,7 @@ def preprocess_answer(data):
         "[\s]": " "
     })
     data["답변"] = filt(data["답변"])
-    data["답변"] = _filt_and_trim(data["답변"])
+  # data["답변"] = _filt_and_trim(data["답변"])
     
     return data
 
