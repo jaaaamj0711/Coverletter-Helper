@@ -25,3 +25,10 @@ plt.hist([len(s) for s in tokenized_data], bins=50)
 plt.xlabel('length of samples')
 plt.ylabel('number of samples')
 plt.show()
+
+model = Word2Vec(sentences = tokenized_data, size = 100, window = 5, min_count = 5, workers = 4, sg = 0)
+
+model_df = pd.DataFrame(model.wv.most_similar("데이터"), columns=['단어', '유사도'])
+
+print("선택 단어 : {}".format("데이터"))
+model_df
