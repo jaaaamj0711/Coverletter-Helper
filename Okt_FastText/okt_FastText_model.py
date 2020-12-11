@@ -26,3 +26,10 @@ plt.xlabel('length of samples')
 plt.ylabel('number of samples')
 plt.show()
 
+model_ft = FastText(tokenized_data, size=100, workers=4, sg=1, iter=6, word_ngrams=5)
+
+model_ft_df = pd.DataFrame(model_f.wv.most_similar("데이터"), columns=['단어', '유사도'])
+
+print("선택 단어 : {}".format("데이터"))
+model_ft_df
+
