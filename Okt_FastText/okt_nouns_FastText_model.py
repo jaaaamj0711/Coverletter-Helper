@@ -18,3 +18,12 @@ for sentence in data['답변']:
     temp_X = okt.nouns(sentence) # 토큰화
     temp_X = [word for word in temp_X if not word in stopwords] # 불용어 제거
     tokenized_data.append(temp_X)
+
+
+# 분포 확인
+print('최대 길이 :', max(len(l) for l in tokenized_data))
+print('평균 길이 :', sum(map(len, tokenized_data))/len(tokenized_data))
+plt.hist([len(s) for s in tokenized_data], bins=50)
+plt.xlabel('length of samples')
+plt.ylabel('number of samples')
+plt.show()
