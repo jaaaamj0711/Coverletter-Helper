@@ -51,3 +51,16 @@ print(sequences[:3])
 sequences = np.array(sequences)
 X = sequences[:,:-1]
 y = sequences[:,-1]
+
+y = to_categorical(y, num_classes=vocab_size)
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, Dense, LSTM
+model = Sequential()
+model.add(Embedding(vocab_size, 10, input_length=max_len-1))
+# y데이터를 분리하였으므로 이제 X데이터의 길이는 기존 데이터의 길이 - 1
+
+model.add(LSTM(128))
+model.add(Dense(vocab_size, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.fit(X, y, epochs=24, verbose=2)
