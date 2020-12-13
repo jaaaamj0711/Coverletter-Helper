@@ -26,3 +26,13 @@ class SentenceTokenizer(object):
                 sentences[idx-1] += (' ' + sentences[idx])
                 sentences[idx] = ''
         return sentences
+   
+    # 문장 단위로 입력을 받아서 명사를 출력
+    def sentences_nouns(self, sentences):
+        nouns = []
+        for sentence in sentences:
+            if sentence is not '':
+                nouns.append(' '.join([noun for noun in self.komoran.nouns(str(sentence))
+                                if len(noun) > 1]))
+        return nouns 
+
