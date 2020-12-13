@@ -65,3 +65,14 @@ sentence = '빅데이터'
 toked = Tokenizer(sentence)
 temp = []
 cnt = 0
+
+
+while True:
+  input_ids = torch.tensor([vocab[vocab.bos_token],] + vocab[toked]).unsqueeze(0)
+  pred = model(input_ids)[0]
+
+  gen = vocab.to_tokens(torch.argmax(pred, axis=-1).squeeze().tolist())
+  print(gen)
+  print(gen[-1])
+  gen = gen[-1]
+  cnt += 1
