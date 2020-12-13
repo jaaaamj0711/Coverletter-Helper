@@ -41,3 +41,9 @@ for key, value in t.word_index.items(): # 인덱스를 단어로 바꾸기 위�
     index_to_word[value] = key
 
 print('빈도수 상위 10번 단어 : {}'.format(index_to_word[10]))
+
+max_len = max(len(l) for l in sequences)
+print('샘플의 최대 길이 : {}'.format(max_len))
+
+sequences = pad_sequences(sequences, maxlen=max_len, padding='pre')
+print(sequences[:3])
