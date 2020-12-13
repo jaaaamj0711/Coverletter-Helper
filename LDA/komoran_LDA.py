@@ -33,3 +33,12 @@ corpus=[id2word.doc2bow(text) for text in texts]
 mallet_path = '/Users/user/Downloads/mallet-2.0.8/bin/mallet' 
 ldamallet = models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=10, id2word=id2word)
 
+from gensim.models.coherencemodel import CoherenceModel
+
+coherence_model_ldamallet = CoherenceModel(model=ldamallet, texts=texts, dictionary=id2word, coherence='c_v')
+coherence_ldamallet = coherence_model_ldamallet.get_coherence()
+
+
+
+
+
