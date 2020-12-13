@@ -64,3 +64,16 @@ class Rank(object):
         ranks = np.linalg.solve(A, B) # 연립방정식 Ax = b
         return {idx: r[0] for idx, r in enumerate(ranks)}
 
+
+# TextRank 문장 요약
+class TextRank(object):
+    def __init__(self, text):
+        self.sent_tokenize = SentenceTokenizer()
+        self.sentences = self.sent_tokenize.text_sentences(text)
+        self.nouns = self.sent_tokenize.sentences_nouns(self.sentences)
+        self.graph_matrix = GraphMatrix()
+        self.sent_graph = self.graph_matrix.sentence_graph(self.nouns)
+        self.rank = Rank()
+        self.sent_rank_idx = self.rank.get_ranks(self.sent_graph)
+        self.sorted_sent_rank_idx = sorted(self.sent_rank_idx, key=lambda k: self.sent_rank_idx[k], reverse=True)
+
