@@ -55,3 +55,9 @@ X = sequences[:,:-1]
 y = sequences[:,-1]
 
 y = to_categorical(y, num_classes=vocab_size)
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, Dense, LSTM
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, Dense, SimpleRNN
