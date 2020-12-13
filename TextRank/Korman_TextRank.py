@@ -130,3 +130,9 @@ class TextRank(object):
         for idx in index:
             summary.append(self.sentences[idx])
         return summary
+
+
+t = data['답변'][100]
+textrank = TextRank(t)
+for row in textrank.summarize(3):
+    print(row)
