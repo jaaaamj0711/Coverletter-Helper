@@ -81,3 +81,7 @@ def sentence_generation(model, t, current_word, n): # 모델, 토크나이저, �
     # for문이므로 이 행동을 다시 반복
     sentence = init_word + sentence
     return sentence
+
+print(sentence_generation(model, t, '개발', 3))
+print(sentence_generation(model, t, '분석', 3))
+print(sentence_generation(model, t, '데이터', 3))
