@@ -38,3 +38,15 @@ from gensim.models.coherencemodel import CoherenceModel
 coherence_model_ldamallet = CoherenceModel(model=ldamallet, texts=texts, dictionary=id2word, coherence='c_v')
 coherence_ldamallet = coherence_model_ldamallet.get_coherence()
 
+def compute_coherence_values(dictionary, corpus, texts, limit, start=4, step=2):
+
+    coherence_values = []
+    model_list = []
+    for num_topics in range(start, limit, step):
+        model = models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=id2word)
+        model_list.append(model)
+        coherencemodel = CoherenceModel(model=model, texts=data_word, dictionary=dictionary, coherence='c_v')
+        coherence_values.append(coherencemodel.get_coherence())
+
+    return model_list, coherence_values
+
