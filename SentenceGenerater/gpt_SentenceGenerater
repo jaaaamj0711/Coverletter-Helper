@@ -104,4 +104,7 @@ data = Data_Set(file_path, vocab, tokenizer)
 
 dataset = DataLoader(data, batch_size=2, shuffle=True, pin_memory=True)
 
+learning_rate = 0.00005
+epochs = 300
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
