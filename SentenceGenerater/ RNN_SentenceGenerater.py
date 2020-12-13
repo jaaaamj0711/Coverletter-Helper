@@ -61,3 +61,10 @@ from tensorflow.keras.layers import Embedding, Dense, LSTM
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, Dense, SimpleRNN
+
+modelRNN = Sequential()
+modelRNN.add(Embedding(vocab_size, 10, input_length=max_len-1)) # 레이블을 분리하였으므로 이제 X의 길이는 5
+modelRNN.add(SimpleRNN(32))
+modelRNN.add(Dense(vocab_size, activation='softmax'))
+modelRNN.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+modelRNN.fit(X, y, epochs=70, verbose=2)
