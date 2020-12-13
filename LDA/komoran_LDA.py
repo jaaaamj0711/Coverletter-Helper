@@ -70,4 +70,10 @@ for m, cv in zip(x, coherence_values):
         model_list_num = count   
     count = count+1
 
+# Select the model and print the topics
+optimal_model = model_list[model_list_num]
+model_topics = optimal_model.show_topics(formatted=False)
+
+model_topics
+
 
