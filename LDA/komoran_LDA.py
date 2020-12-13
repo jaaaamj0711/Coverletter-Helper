@@ -61,6 +61,13 @@ topic_num = 0
 count = 0
 max_coherence = 0
 
-
+for m, cv in zip(x, coherence_values):
+    print("Num Topics =", m, " has Coherence Value of", cv)
+    coherence = cv
+    if coherence >= max_coherence:
+        max_coherence = coherence
+        topic_num = m
+        model_list_num = count   
+    count = count+1
 
 
