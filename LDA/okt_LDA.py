@@ -18,3 +18,11 @@ for i in range(len(x_list)):
         data_word.append(okt.nouns(x_list[i]))
     except Exception as e:
         continue
+
+Data_list=x_list.values.tolist()
+
+from gensim import corpora, models
+from gensim.models.wrappers import LdaMallet
+
+id2word=corpora.Dictionary(data_word)
+
