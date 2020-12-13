@@ -26,3 +26,10 @@ from gensim.models.wrappers import LdaMallet
 
 id2word=corpora.Dictionary(data_word)
 id2word.filter_extremes(no_below = 0) #20회 이하로 등장한 단어는 삭제
+
+texts = data_word
+corpus=[id2word.doc2bow(text) for text in texts]
+
+mallet_path = '/Users/user/Downloads/mallet-2.0.8/bin/mallet' 
+ldamallet = models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=10, id2word=id2word)
+
