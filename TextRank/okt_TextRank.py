@@ -12,19 +12,6 @@ data = pd.read_csv("./jobkorea_all.csv")
 
 data = preprocess_answer(data)
 
-class SentenceTokenizer(object):
-    def __init__(self):
-        self.kkma = Kkma()
-        self.okt = Okt()
-    
-    # 텍스트를 입력으로 받아서 문장단위로 나누어 줌
-    def text_sentences(self, text):
-        sentences = self.kkma.sentences(text)
-        for idx in range(0, len(sentences)):
-            if len(sentences[idx]) <= 10:
-                sentences[idx-1] += (' ' + sentences[idx])
-                sentences[idx] = ''
-        return sentences
 
 class SentenceTokenizer(object):
     def __init__(self):
@@ -102,27 +89,6 @@ class Rank(object):
         B = (1-d) * np.ones((matrix_size, 1))
         ranks = np.linalg.solve(A, B) # 연립방정식 Ax = b
         return {idx: r[0] for idx, r in enumerate(ranks)}
-
-class TextRank(object):
-    def __init__(self, text):
-        self.sent_tokenize = SentenceTokenizer()
-        self.sentences = self.sent_tokenize.text_sentences(text)
-        self.nouns = self.sent_tokenize.sentences_nouns(self.sentences)
-        self.graph_matrix = GraphMatrix()
-        self.sent_graph = self.graph_matrix.sentence_graph(self.nouns)
-        self.rank = Rank()
-        self.sent_rank_idx = self.rank.get_ranks(self.sent_graph)
-        self.sorted_sent_rank_idx = sorted(self.sent_rank_idx, key=lambda k: self.sent_rank_idx[k], reverse=True)
-
-    def summarize(self, sent_num=3): # 3줄 요약
-        summary = []
-        index=[]
-        for idx in self.sorted_sent_rank_idx[:sent_num]:
-            index.append(idx)
-        index.sort()
-        for idx in index:
-            summary.append(self.sentences[idx])
-        return summary
 
 class TextRank(object):
     def __init__(self, text):
