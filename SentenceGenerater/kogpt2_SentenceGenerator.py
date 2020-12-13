@@ -76,3 +76,12 @@ while True:
   print(gen[-1])
   gen = gen[-1]
   cnt += 1
+
+  if cnt == 50:
+    break
+
+  if '</s>' == gen:
+    break
+  sentence += gen.replace('▁', ' ')
+  toked = Tokenizer(sentence)
+  
