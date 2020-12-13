@@ -86,3 +86,12 @@ kogpt2model.to(torch.device(PU))
 model = kogpt2model
 
 
+
+torch.save(model.state_dict,save_path+'KoGPT2_checkpoint.tar') #모델의 가중치 값을 저장하는 코드입니다.
+
+model.load_state_dict(torch.load(save_path+'KoGPT2_checkpoint.tar')) #모델의 가중치 값을 불러오는 코드입니다.
+
+torch.save(model, 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') #모델 전체를 저장하는 코드입니다.
+
+model = torch.load('C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') #모델 전체를 불러오는 코드입니다.
+
