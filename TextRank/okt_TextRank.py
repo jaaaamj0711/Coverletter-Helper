@@ -12,3 +12,19 @@ data = pd.read_csv("/Users/doyun/2020_text_mining/jobkorea_data.csv")
 
 data = preprocess_answer(data)
 
+# 문장 토큰화
+class SentenceTokenizer(object):
+    def __init__(self):
+        self.kkma = Kkma()
+        self.okt = Okt()
+    
+    # 텍스트를 입력으로 받아서 문장단위로 나누어 줌
+    def text_sentences(self, text):
+        sentences = self.kkma.sentences(text)
+        for idx in range(0, len(sentences)):
+            if len(sentences[idx]) <= 10:
+                sentences[idx-1] += (' ' + sentences[idx])
+                sentences[idx] = ''
+        return sentences
+
+
