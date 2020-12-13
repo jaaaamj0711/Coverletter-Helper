@@ -54,3 +54,23 @@ model.to(torch.device(PU)) #모델 연산 유닛 설정
 model.train() #모델 학습모드로 변경
 
 
+save_path = 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar'
+
+from transformers import GPT2Config, GPT2LMHeadModel
+
+
+save_path = 'C:/Users/user/KoGPT2/'
+
+kogpt2_config = {
+		"initializer_range": 0.02,
+		"layer_norm_epsilon": 0.000001,
+		"n_ctx": 1024,
+		"n_embd": 768,
+		"n_head": 12,
+		"n_layer": 12,
+		"n_positions": 1024,
+		"vocab_size": 50000,
+		"activation_function": "gelu"
+}
+
+
