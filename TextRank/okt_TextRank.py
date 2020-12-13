@@ -114,7 +114,7 @@ class TextRank(object):
         self.sent_rank_idx = self.rank.get_ranks(self.sent_graph)
         self.sorted_sent_rank_idx = sorted(self.sent_rank_idx, key=lambda k: self.sent_rank_idx[k], reverse=True)
 
-      def summarize(self, sent_num=3): # 3줄 요약
+    def summarize(self, sent_num=3): # 3줄 요약
         summary = []
         index=[]
         for idx in self.sorted_sent_rank_idx[:sent_num]:
