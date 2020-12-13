@@ -15,3 +15,9 @@ def dataset (file_path):
   f.close()
 
   return data
+
+  
+model, vocab = get_pytorch_kogpt2_model()
+
+load_path = 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar'
+checkpoint = torch.load(load_path, map_location=torch.device(PU))
