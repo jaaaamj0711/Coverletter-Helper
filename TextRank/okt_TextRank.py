@@ -36,4 +36,14 @@ class SentenceTokenizer(object):
                                 if len(noun) > 1]))
         return nouns 
 
+# TF-IDF 생성
+class GraphMatrix(object):
+    def __init__(self):
+        self.tfidf = TfidfVectorizer()
+        self.cnt_vec = CountVectorizer()
+        self.graph_sentence = []
+    def sentence_graph(self, sentence):
+        tfidf_mat = self.tfidf.fit_transform(sentence).toarray()
+        self.graph_sentence = np.dot(tfidf_mat, tfidf_mat.T) # TF-IDF matrix 
+        return self.graph_sentence # Sentence graph
 
