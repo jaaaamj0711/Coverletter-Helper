@@ -7,3 +7,9 @@ from tensorflow.keras.utils import to_categorical
 
 df = pd.read_csv('./kogpt2/dataset.txt')
 df.head()
+
+df['제목'].isnull().values.any()
+
+headline = [] # 리스트 선언
+headline.extend(list(df.제목.values)) # 헤드라인의 값들을 리스트로 저장
+headline[:5] # 상위 5개만 출력
