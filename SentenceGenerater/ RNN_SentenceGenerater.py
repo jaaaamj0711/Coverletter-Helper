@@ -49,3 +49,9 @@ print('샘플의 최대 길이 : {}'.format(max_len))
 
 sequences = pad_sequences(sequences, maxlen=max_len, padding='pre')
 print(sequences[:3])
+
+sequences = np.array(sequences)
+X = sequences[:,:-1]
+y = sequences[:,-1]
+
+y = to_categorical(y, num_classes=vocab_size)
