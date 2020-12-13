@@ -35,3 +35,9 @@ for line in text: # 1,214 개의 샘플에 대해서 샘플을 1개씩 가져온
         sequences.append(sequence)
 
 sequences[:11] # 11개의 샘플 출력
+
+index_to_word={}
+for key, value in t.word_index.items(): # 인덱스를 단어로 바꾸기 위해 index_to_word를 생성
+    index_to_word[value] = key
+
+print('빈도수 상위 10번 단어 : {}'.format(index_to_word[10]))
