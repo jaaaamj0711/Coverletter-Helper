@@ -7,3 +7,19 @@ import torch
 
 #cpu 설정
 PU='cpu' 
+
+
+class Data_Set(Dataset):
+
+  def __init__ (self, file_path,vocab,tokenizer):
+    self.data = []
+    self.vocab = vocab
+    self.tokenizer = tokenizer
+
+    f = open(file_path,'r',encoding='utf-8')
+
+    file = f.read()
+    file = file.split('\n')
+
+    dataset = []
+    now = ''
