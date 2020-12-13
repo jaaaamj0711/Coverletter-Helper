@@ -26,6 +26,20 @@ class SentenceTokenizer(object):
                 sentences[idx] = ''
         return sentences
 
+class SentenceTokenizer(object):
+    def __init__(self):
+        self.kkma = Kkma()
+        self.hannanum = Hannanum()
+    
+    # 텍스트를 입력으로 받아서 문장단위로 나누어 줌
+    def text_sentences(self, text):
+        sentences = self.kkma.sentences(text)
+        for idx in range(0, len(sentences)):
+            if len(sentences[idx]) <= 10:
+                sentences[idx-1] += (' ' + sentences[idx])
+                sentences[idx] = ''
+        return sentences
+
     # 문장 단위로 입력을 받아서 명사를 출력
     def sentences_nouns(self, sentences):
         nouns = []
