@@ -76,4 +76,20 @@ class TextRank(object):
         self.rank = Rank()
         self.sent_rank_idx = self.rank.get_ranks(self.sent_graph)
         self.sorted_sent_rank_idx = sorted(self.sent_rank_idx, key=lambda k: self.sent_rank_idx[k], reverse=True)
+    
+    def summarize(self, sent_num=3): # 3줄 요약
+        summary = []
+        index=[]
+        for idx in self.sorted_sent_rank_idx[:sent_num]:
+            index.append(idx)
+        index.sort()
+        for idx in index:
+            summary.append(self.sentences[idx])
+        return summary
 
+# 결과 보기
+t = data['답변'][100]
+textrank = TextRank(t)
+
+for row in textrank.summarize(3):
+    print(row)
