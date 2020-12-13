@@ -51,6 +51,15 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=4, step=2):
 
     return model_list, coherence_values
 
+# Can take a long time to run.
+model_list, coherence_values = compute_coherence_values(dictionary=id2word, corpus=corpus, texts=texts, start=4, limit=21, step=2)
+
+
+limit=21; start=4; step=2;
+x = range(start, limit, step)
+topic_num = 0
+count = 0
+max_coherence = 0
 
 
 
