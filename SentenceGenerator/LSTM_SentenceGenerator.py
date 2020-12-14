@@ -23,3 +23,11 @@ t.fit_on_texts(text)
 vocab_size = len(t.word_index) + 1
 print('단어 집합의 크기 : %d' % vocab_size)
 
+sequences = list()
+for line in text: # 1,214 개의 샘플에 대해서 샘플을 1개씩 가져온다.
+    encoded = t.texts_to_sequences([line])[0] # 각 샘플에 대한 정수 인코딩
+    for i in range(1, len(encoded)):
+        sequence = encoded[:i+1]
+        sequences.append(sequence)
+
+
