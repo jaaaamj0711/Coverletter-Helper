@@ -48,3 +48,9 @@ class Data_Set(Dataset):
   def __getitem__(self, index):
     return self.data[index]
 
+
+model, vocab = get_pytorch_kogpt2_model()
+
+model.to(torch.device(PU)) #모델 연산 유닛 설정
+model.train() #모델 학습모드로 변경
+
