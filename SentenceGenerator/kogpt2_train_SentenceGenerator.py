@@ -54,3 +54,12 @@ model, vocab = get_pytorch_kogpt2_model()
 model.to(torch.device(PU)) #모델 연산 유닛 설정
 model.train() #모델 학습모드로 변경
 
+
+save_path = 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar'
+
+from transformers import GPT2Config, GPT2LMHeadModel
+
+
+save_path = 'C:/Users/user/KoGPT2/'
+
+
