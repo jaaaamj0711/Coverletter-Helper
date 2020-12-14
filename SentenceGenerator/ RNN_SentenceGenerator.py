@@ -32,3 +32,17 @@ for line in text: # 1,214 개의 샘플에 대해서 샘플을 1개씩 가져온
 
 # 시퀀스 예시 출력
 sequences[:11]
+
+index_to_word={}
+for key, value in t.word_index.items(): # 인덱스를 단어로 바꾸기 위해 index_to_word를 생성
+    index_to_word[value] = key
+
+print('빈도수 상위 10번 단어 : {}'.format(index_to_word[10]))
+
+max_len = max(len(l) for l in sequences)
+print('샘플의 최대 길이 : {}'.format(max_len))
+
+sequences = pad_sequences(sequences, maxlen=max_len, padding='pre')
+print(sequences[:3])
+
+sequences = np.array(sequences)
