@@ -1,16 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 import re
 import numpy as np
 import pandas as pd
-
-
-# In[ ]:
-
 
 #  str.replace 함수 정의(특정 패턴 공백으로 처리)
 def str_replace(text, patterns: list, replace=" "):
@@ -23,16 +13,9 @@ def str_replace(text, patterns: list, replace=" "):
     
     return text
 
-
-# In[1]:
-
-
 def split_spec(text):
     assert isinstance(text, pd.core.series.Series)
     return text.str.split("\n").apply(lambda x: x[1:-2])
-
-
-# In[68]:
 
 
 def preprocess_spec(data):
@@ -41,7 +24,7 @@ def preprocess_spec(data):
     
     data["스펙1"] = split_spec(data["스펙"]) 
     
-    data["학력"] = data["스펙1"].apply(lambda x: x[0]) # 학력 해당 부분 추출
+    data["학력"] = data["스펙1"].apply(lambda x: x[0])
 
     # 고졸인 사람들을 제외
     data["전공"] = data["스펙1"][data["스펙1"].apply(lambda x: len(x) > 1)].apply(lambda x: x[1])
@@ -77,8 +60,6 @@ def preprocess_spec(data):
         "\s*\d*읽음": " ",
         ",": " "
     })   
-    
-    
 
     for column in ["토익", "토스", "오픽", "사회활동"]:
         data[f"{column}"] = 0
@@ -97,11 +78,4 @@ def preprocess_spec(data):
         data["자격증"] = data.스펙2.str.extract("(자격증\s*\w*)")
         data["자격증"] = data.자격증.str.extract("(\w*개)")
 
-    data.drop(columns=["스펙1","스펙2"], inplace=True)
-
-
-# In[ ]:
-
-
-
-
+    data.drop(columns=["스펙1", "스펙2"], inplace=True)

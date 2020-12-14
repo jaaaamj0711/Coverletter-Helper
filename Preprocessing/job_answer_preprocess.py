@@ -5,8 +5,8 @@ import pandas as pd
 # str.replace 함수 정의 (특정 패턴 공백으로 처리)
 def str_replace(text, patterns: list, replace=" "):
         
-        assert isinstance(text,pd.core.series.Series)
-        assert isinstance(patterns,list)
+        assert isinstance(text, pd.core.series.Series)
+        assert isinstance(patterns, list)
 
         for pattern in patterns:
                 text = text.str.replace(pattern, replace)
@@ -16,8 +16,8 @@ def str_replace(text, patterns: list, replace=" "):
 # re.sub 함수 정의 (특정 정규식 패턴 공백으로 처리)
 def re_sub(text, patterns: dict):
         
-        assert isinstance(text,pd.core.series.Series)
-        assert isinstance(patterns,dict)
+        assert isinstance(text, pd.core.series.Series)
+        assert isinstance(patterns, dict)
 
         for pattern in patterns:
                 text[text.notna()] = text[text.notna()].apply(lambda x: re.sub(pattern, patterns[pattern], x))
@@ -42,9 +42,9 @@ def preprocess_company(data):
     
     assert isinstance(data, pd.core.frame.DataFrame)
     
-    data["회사명"] = data["회사명"].str.lower() # 소문자로 변경
-    data["회사명"] = str_replace(data["회사명"], patterns=["㈜", "주식회사"]) # pattenrs 공백으로 처리
-    data["회사명"] = re_sub(data["회사명"], patterns={r"\([^)]*\)": " " }) # pstterns에 해당되는 부분 공백으로 처리
+    data["회사명"] = data["회사명"].str.lower()
+    data["회사명"] = str_replace(data["회사명"], patterns=["㈜", "주식회사"]) 
+    data["회사명"] = re_sub(data["회사명"], patterns={r"\([^)]*\)": " " })
     data["회사명"] = filt(data["회사명"])
     data.loc[data["회사명"].str[0] == "셰", "회사명"] = "셰플러코리아"
     
@@ -59,7 +59,7 @@ def title(data):
     data = data.sort_index()
     data2 = data.copy()
     data2["답변"] = re_sub(data2["답변"], patterns={ 
-        "\r\n\"": "{",    #소제목에 해당되는 패턴 정의
+        "\r\n\"": "{",    
         "\"\r": "}",
         "\s*\[": "{",
         "\]": "}",
@@ -102,15 +102,13 @@ def preprocess_answer(data):
         "[\s]": " "
     })
     data["답변"] = filt(data["답변"])
-  # data["답변"] = _filt_and_trim(data["답변"])
     
     return data
 
 # 직무분야 분리 함수
 def preprocess_job(data):
     
-    
-    data["직무분야"] = data["직무분야"].str.split("·") # ·기준으로 split
+    data["직무분야"] = data["직무분야"].str.split("·") 
     
     for i in range(data["직무분야"].apply(lambda x: len(x)).max()):
         index = data["직무분야"].apply(lambda x: len(x) >= (i+1))
