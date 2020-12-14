@@ -110,3 +110,32 @@ learning_rate = 0.00005
 epochs = 300
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
+for epoch in range(checkpoint['epoch'], epochs+1):
+  cnt = 0
+
+  for data in dataset:
+    optimizer.zero_grad()
+
+    data = torch.stack(data)
+    data = data.transpose(1,0)
+    data = data.to(PU)
+
+    output = model(data,labels=data)
+    loss, logits = output[:2]
+    loss.backward()
+    optimizer.step()
+
+    if cnt % 20 == 0:
+      print("[+] epoch : {}, cnt : {}, loss : {} [+]".format(epoch, cnt+1, str(loss)[7:12]))
+
+    if epoch % 20 == 0 and cnt == 1:
+      torch.save({
+          'epoch': epoch,
+          'cnt': cnt,
+          'model_state_dict': model.state_dict(),
+          'optimizer_state_dict': optimizer.state_dict(),
+          'loss': loss,
+          }, save_path+'KoGPT2_checkpoint.tar')
+      
+    cnt += 1
+
