@@ -97,3 +97,12 @@ torch.save(model, 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') #모델 전체�
 
 model = torch.load('C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') #모델 전체를 불러오는 코드입니다.
 
+
+file_path = 'C:/Users/user/KoGPT2/dataset.txt'
+
+tokenizer = SentencepieceTokenizer(get_tokenizer(), num_best=0, alpha=0)
+
+data = Data_Set(file_path, vocab, tokenizer)
+
+dataset = DataLoader(data, batch_size=2, shuffle=True, pin_memory=True)
+
