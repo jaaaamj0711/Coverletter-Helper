@@ -27,7 +27,7 @@ wordcloud = WordCloud(font_path='C:/Users/user/Desktop/2020_text_mining/NanumGot
 cloud = wordcloud.generate_from_frequencies(dict(top))
 
 plt.figure(figsize=(10,8))
-plt.imshow(wordcloud)#TODO  
+plt.imshow(wordcloud)
 plt.tight_layout(pad=0)
 plt.axis('off')
 plt.show()
