@@ -52,4 +52,17 @@ kogpt2_config = {
       "vocab_size": 50000
 }
 
+checkpoint = torch.load(save_path+'KoGPT2_checkpoint.tar', map_location=PU)
+
+kogpt2model = GPT2LMHeadModel(config=GPT2Config.from_dict(kogpt2_config))
+
+kogpt2model.load_state_dict(checkpoint['model_state_dict'])
+
+kogpt2model.eval()
+
+kogpt2model.to(torch.device(PU))
+
+model = kogpt2model
+
+
 
