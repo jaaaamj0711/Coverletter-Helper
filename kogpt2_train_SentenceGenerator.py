@@ -27,3 +27,24 @@ class Data_Set(Dataset):
 
     dataset = []
     now = ''
+    for i, line in enumerate(file):
+      if i % 30 == 0 and i != 0:
+        dataset.append(now)
+        now = ''
+
+      now = now + '\n' + line
+
+    for line in dataset:
+      tokenized_line = tokenizer(line[:-1])
+
+      indexing_word = [vocab[vocab.bos_token], ]+ vocab[tokenized_line] + [vocab[vocab.eos_token]]
+      self.data.append(indexing_word)
+
+    f.close()
+
+  def __len__(self):
+    return len(self.data)
+
+  def __getitem__(self, index):
+    return self.data[index]
+
