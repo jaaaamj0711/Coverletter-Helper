@@ -10,7 +10,7 @@ komoran = Komoran()
 %time komoran_nouns = komoran.nouns(''.join(str(data['답변'].fillna(''))))
 komoran_nouns[-10:]
 
-DBA = data.loc[data['직무분야'] == "네트워크·서버·보안", "답변"]
+DBA = data.loc[data['직무분야'] == "DBA·데이터베이스", "답변"]
 nouns = komoran.nouns(''.join(str(DBA.fillna(''))))
 nouns = [n for n in nouns if len(n) > 1]
 nouns = [n for n in nouns if not(match('^[0-9]',n))]
@@ -27,7 +27,7 @@ wordcloud = WordCloud(font_path='C:/Users/user/Desktop/2020_text_mining/NanumGot
 cloud = wordcloud.generate_from_frequencies(dict(top))
 
 plt.figure(figsize=(10,8))
-plt.imshow(wordcloud)#TODO  
+plt.imshow(wordcloud)
 plt.tight_layout(pad=0)
 plt.axis('off')
 plt.show()
