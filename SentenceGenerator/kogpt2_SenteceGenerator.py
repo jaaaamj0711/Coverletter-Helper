@@ -64,5 +64,11 @@ kogpt2model.to(torch.device(PU))
 
 model = kogpt2model
 
+Tokenizer = SentencepieceTokenizer(get_tokenizer(), num_best=0, alpha=0)
+
+sentence = '빅데이터'
+toked = Tokenizer(sentence)
+temp = []
+cnt = 0
 
 
