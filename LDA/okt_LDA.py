@@ -61,6 +61,7 @@ limit = 21
 start = 4 
 step = 2
 x = range(start, limit, step)
+
 topic_num = 0
 count = 0
 max_coherence = 0
