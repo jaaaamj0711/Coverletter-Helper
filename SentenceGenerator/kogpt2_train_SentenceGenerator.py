@@ -86,3 +86,23 @@ kogpt2model.train()
 kogpt2model.to(torch.device(PU))
 
 model = kogpt2model
+
+
+torch.save(model.state_dict,save_path+'KoGPT2_checkpoint.tar') #모델의 가중치 값을 저장하는 코드입니다.
+
+model.load_state_dict(torch.load(save_path+'KoGPT2_checkpoint.tar')) #모델의 가중치 값을 불러오는 코드입니다.
+
+torch.save(model, 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') #모델 전체를 저장하는 코드입니다.
+
+
+model = torch.load('C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') #모델 전체를 불러오는 코드입니다.
+
+
+file_path = 'C:/Users/user/KoGPT2/dataset.txt'
+
+tokenizer = SentencepieceTokenizer(get_tokenizer(), num_best=0, alpha=0)
+
+data = Data_Set(file_path, vocab, tokenizer)
+
+dataset = DataLoader(data, batch_size=2, shuffle=True, pin_memory=True)
+
