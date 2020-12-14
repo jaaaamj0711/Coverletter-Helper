@@ -41,3 +41,8 @@ print('빈도수 상위 10번 단어 : {}'.format(index_to_word[10]))
 
 max_len = max(len(l) for l in sequences)
 print('샘플의 최대 길이 : {}'.format(max_len))
+
+sequences = pad_sequences(sequences, maxlen=max_len, padding='pre')
+print(sequences[:3])
+
+sequences = np.array(sequences)
