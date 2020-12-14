@@ -52,4 +52,43 @@ kogpt2_config = {
       "vocab_size": 50000
 }
 
+checkpoint = torch.load(save_path+'KoGPT2_checkpoint.tar', map_location=PU)
+
+kogpt2model = GPT2LMHeadModel(config=GPT2Config.from_dict(kogpt2_config))
+
+kogpt2model.load_state_dict(checkpoint['model_state_dict'])
+
+kogpt2model.eval()
+
+kogpt2model.to(torch.device(PU))
+
+model = kogpt2model
+
+Tokenizer = SentencepieceTokenizer(get_tokenizer(), num_best=0, alpha=0)
+
+sentence = '빅데이터'
+toked = Tokenizer(sentence)
+temp = []
+cnt = 0
+
+
+while True:
+  input_ids = torch.tensor([vocab[vocab.bos_token],] + vocab[toked]).unsqueeze(0)
+  pred = model(input_ids)[0]
+
+  gen = vocab.to_tokens(torch.argmax(pred, axis=-1).squeeze().tolist())
+  print(gen)
+  print(gen[-1])
+  gen = gen[-1]
+  cnt += 1
+
+  if cnt == 50:
+    break
+
+  if '</s>' == gen:
+    break
+  sentence += gen.replace('▁', ' ')
+  toked = Tokenizer(sentence)
+
+
 
