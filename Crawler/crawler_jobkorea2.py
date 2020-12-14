@@ -1,15 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import pandas as pd
 import re
 import requests
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-
 
 # 질문, 답변, 조언, 스펙, 평가, 총평 가져오기
 def jobkorea2(column="주소"):
@@ -60,4 +53,3 @@ def jobkorea2(column="주소"):
             continue
     
     return result.reset_index(drop=True)
-
