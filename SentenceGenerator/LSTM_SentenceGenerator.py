@@ -30,4 +30,6 @@ for line in text: # 1,214 개의 샘플에 대해서 샘플을 1개씩 가져온
         sequence = encoded[:i+1]
         sequences.append(sequence)
 
+# 시퀀스 예시 출력
+sequences[:11]
 
