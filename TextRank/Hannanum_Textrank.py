@@ -8,10 +8,11 @@ import numpy as np
 import pandas as pd
 
 
-data = pd.read_csv("./jobkorea_all.csv")
+data = pd.read_csv("./2020_text_mining/jobkorea_data.csv")
 
 data = preprocess_answer(data)
 
+# 문장 토큰화
 class SentenceTokenizer(object):
     def __init__(self):
         self.kkma = Kkma()
@@ -26,7 +27,7 @@ class SentenceTokenizer(object):
                 sentences[idx] = ''
         return sentences
 
-    # 문장 단위로 입력을 받아서 명사를 출력
+        # 문장 단위로 입력을 받아서 명사를 출력
     def sentences_nouns(self, sentences):
         nouns = []
         for sentence in sentences:
@@ -43,7 +44,7 @@ class GraphMatrix(object):
         self.graph_sentence = []
     def sentence_graph(self, sentence):
         tfidf_mat = self.tfidf.fit_transform(sentence).toarray()
-        self.graph_sentence = np.dot(tfidf_mat, tfidf_mat.T) # tfidf matrix 
+        self.graph_sentence = np.dot(tfidf_mat, tfidf_mat.T) # TF-IDF matrix 
         return self.graph_sentence # Sentence graph
 
 # TextRank 알고리즘을 구현
@@ -62,12 +63,31 @@ class Rank(object):
         ranks = np.linalg.solve(A, B) # 연립방정식 Ax = b
         return {idx: r[0] for idx, r in enumerate(ranks)}
 
+# TextRank 문장 요약
+class TextRank(object):
+    def __init__(self, text):
+        self.sent_tokenize = SentenceTokenizer()
+        self.sentences = self.sent_tokenize.text_sentences(text)
+        self.nouns = self.sent_tokenize.sentences_nouns(self.sentences)
+        self.graph_matrix = GraphMatrix()
+        self.sent_graph = self.graph_matrix.sentence_graph(self.nouns)
+        self.rank = Rank()
+        self.sent_rank_idx = self.rank.get_ranks(self.sent_graph)
+        self.sorted_sent_rank_idx = sorted(self.sent_rank_idx, key=lambda k: self.sent_rank_idx[k], reverse=True)
+    
+     def summarize(self, sent_num=3): # 3줄 요약
+        summary = []
+        index=[]
+        for idx in self.sorted_sent_rank_idx[:sent_num]:
+            index.append(idx)
+        index.sort()
+        for idx in index:
+            summary.append(self.sentences[idx])
+        return summary
 
+# 결과 보기
 t = data['답변'][100]
 textrank = TextRank(t)
+
 for row in textrank.summarize(3):
     print(row)
-
-
-    
-
