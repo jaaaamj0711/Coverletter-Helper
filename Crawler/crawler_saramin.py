@@ -1,15 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[65]:
-
-
 import pandas as pd
 import re
 import requests
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
+# url 받아오는 함수
 def saramin1(pages: int):
     
     assert pages > 0
@@ -41,7 +36,7 @@ def saramin1(pages: int):
         
     return result.reset_index(drop=True)
 
-
+# 질문과 답변 받아오는 함수
 def saramin2(column="주소"):
     
     saramin1 = pd.read_csv("./saramin1.csv")
@@ -71,4 +66,3 @@ def saramin2(column="주소"):
             continue
     
     return result.reset_index(drop=True)
-
