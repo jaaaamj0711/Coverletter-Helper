@@ -11,3 +11,8 @@ df = pd.read_csv('./2020_text_mining/kogpt2/dataset.txt')
 # 데이터 확인
 df.head()
 df['제목'].isnull().values.any()
+
+headline = [n for n in headline if n != "Unknown"] # Unknown 값을 가진 샘플 제거
+print('노이즈값 제거 후 샘플의 개수 : {}'.format(len(headline))) # 제거 후 샘플의 개수
+
+text = headline
