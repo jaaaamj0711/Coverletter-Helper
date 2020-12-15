@@ -34,7 +34,6 @@ checkpoint = torch.load(load_path, map_location=torch.device(PU))
 model.to(torch.device(PU)) 
 torch.load(load_path, map_location=torch.device(PU))
 
-model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 
 # 저장 경로 지정
@@ -57,7 +56,6 @@ checkpoint = torch.load(save_path+'KoGPT2_checkpoint.tar', map_location=PU)
 
 # Modeling
 kogpt2model = GPT2LMHeadModel(config=GPT2Config.from_dict(kogpt2_config))
-kogpt2model.load_state_dict(checkpoint['model_state_dict'])
 kogpt2model.eval()
 kogpt2model.to(torch.device(PU))
 
