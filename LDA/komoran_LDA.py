@@ -28,8 +28,8 @@ Data_list = x_list.values.tolist()
 
 id2word = corpora.Dictionary(data_word)
 
-#20회 이하로 등장한 단어는 삭제
-id2word.filter_extremes(no_below = 0)
+# 20회 이하로 등장한 단어는 삭제
+id2word.filter_extremes(no_below=0)
 
 texts = data_word
 corpus = [id2word.doc2bow(text) for text in texts]
@@ -57,8 +57,11 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=4, step=2):
 model_list, coherence_values = compute_coherence_values(dictionary=id2word, corpus=corpus, texts=texts, start=4, limit=21, step=2)
 
 # 파라미터 설정
-limit=21; start=4; step=2;
+limit = 21
+start = 4
+step = 2
 x = range(start, limit, step)
+
 topic_num = 0
 count = 0
 max_coherence = 0
