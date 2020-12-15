@@ -1,18 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import pandas as pd
 import re
 import requests
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-
-
-# 회사명, 지원시기, 근무형태, 직무분야, 주소 가져오기 #
+# 회사명, 지원시기, 근무형태, 직무분야, 주소 가져오기 
 def jobkorea1(pages: int):
     
     assert pages > 0
@@ -51,4 +43,3 @@ def jobkorea1(pages: int):
             continue
                 
     return result.reset_index(drop=True)
-
