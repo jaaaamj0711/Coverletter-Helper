@@ -72,15 +72,11 @@ kogpt2_config = {
 # 체크 포인트 생성 및 모델 학습 준비
 checkpoint = torch.load(save_path+'KoGPT2_checkpoint.tar', map_location=PU)
 kogpt2model = GPT2LMHeadModel(config=GPT2Config.from_dict(kogpt2_config))
-kogpt2model.load_state_dict(checkpoint['model_state_dict'])
 kogpt2model.train()
 kogpt2model.to(torch.device(PU))
 
 model = kogpt2model
 
-#모델의 가중치 값을 저장하는 코드입니다.
-torch.save(model.state_dict,save_path+'KoGPT2_checkpoint.tar')
-model.load_state_dict(torch.load(save_path+'KoGPT2_checkpoint.tar')) 
 
 # 모델 전체 저장
 torch.save(model, 'C:/Users/user/KoGPT2/KoGPT2_checkpoint.tar') 
@@ -124,7 +120,6 @@ for epoch in range(checkpoint['epoch'], epochs+1):
       torch.save({
           'epoch': epoch,
           'cnt': cnt,
-          'model_state_dict': model.state_dict(),
           'optimizer_state_dict': optimizer.state_dict(),
           'loss': loss,
           }, save_path+'KoGPT2_checkpoint.tar')
