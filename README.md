@@ -126,4 +126,4 @@
       
 ## License
 
-KOGPT2와 LDA는 modified MIT 라이선스 하에 공개되어 있습니다. 해당 모델및 코드를 사용할 경우 모델 및 코드를 사용할 경우 라이선스 내용을 준수해주세요. 라이선스 내용은 [LICENSE](https://gitlab.com/jaaaamj0711/example/-/blob/master/LICENSE, "LICENSE") 파일에서 확인할 수 있습니다.  
+KOGPT2와 LDA는 modified MIT 라이선스 하에 공개되어 있습니다. 해당 모델및 코드를 사용할 경우 모델 및 코드를 사용할 경우 라이선스 내용을 준수해주세요. 라이선스 내용은 [LICENSE](https://gitlab.com/DOYUN_K/2020_text_mining/-/blob/master/LICENSE, "LICENSE") 파일에서 확인할 수 있습니다.  
