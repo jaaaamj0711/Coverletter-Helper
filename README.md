@@ -82,18 +82,7 @@
 
 ### Requirements
 ```
-- tensorflow == 1.14.0
-- gensim == 3.8.3
-- konlpy == 0.5.2
-- wordcloud == 1.8.1
-- bs4 == 4.6.0
-- Python >= 3.6
-- PyTorch == 1.5.0
-- MXNet == 1.6.0
-- onnxruntime == 1.5.2
-- gluonnlp == 0.9.1
-- sentencepiece >= 0.1.85
-- transformers == 2.11.0
+
 ```
 
 * LDA 모델을 사용하기 위해서는 MALLET 패키지 다운이 필요합니다. 해당 모델을 사용할 경우 [MALLET](http://mallet.cs.umass.edu/index.php, "MALLET") 에서   
