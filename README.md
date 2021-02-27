@@ -7,6 +7,7 @@
 박명석: Student  
 서민지: Student
 
+
 ## Introduce
 
 취업을 준비하는 과정에서 가장 기본적으로 필수로 준비해야 되는 것은 바로 자기소개서 입니다. 취준생들은 자기소개서를 작성하는데 있어서 많은 어려움을 겪고 있습니다. 이에 본 프로젝트에서는 합격 자기소개서를 바탕으로 분석하여 취준생들에게 자기소개서 작성에 관한 도움을 주고자 합니다. 우리가 제공하는 기능은 다음과 같습니다.  
@@ -70,35 +71,46 @@
            |--kogpt2_SenteceGenerator.py
 
 ```
-## Usage model
-
-![image](/uploads/314785b1187b4d5f88dc17f09813e14a/image.png)
 
 ## How to use
-   
-1) [crawler](https://gitlab.com/DOYUN_K/2020_text_mining/-/tree/master/Crawler, "cralwer link")를 통해 데이터를 수집
-2) [Preoprocessing](https://gitlab.com/DOYUN_K/2020_text_mining/-/tree/master/Preprocessing, "preprocessing link")으로 데이터 전처리 진행
-3) 원하는 모델(LDA, LSTM 등)선택 후 py파일 실행
+1. crawler를 통해 데이터를 수집
+2. Preoprocessing으로 데이터 전처리 진행
+3. 원하는 모델(LDA, LSTM 등)선택 후 py파일 실행
 
-### Requirements
+
+## Requirements
+
 ```
+- tensorflow == 1.14.0
+- gensim == 3.8.3
+- konlpy == 0.5.2
+- wordcloud == 1.8.1
+- bs4 == 4.6.0
+- Python >= 3.6
+- PyTorch == 1.5.0
+- MXNet == 1.6.0
+- onnxruntime == 1.5.2
+- gluonnlp == 0.9.1
+- sentencepiece >= 0.1.85
+- transformers == 2.11.0
 
 ```
+- LDA 모델을 사용하기 위해서는 MALLET 패키지 다운이 필요합니다. 해당 모델을 사용할 경우 MALLET 에서
+다운 받아 사용하여 주세요.
+- 저희는 SKT-AI에서 약 20GB의 한국어 데이터를 Pre-Training 시킨 KoGPT2 모델을 사용하였습니다.
+따라서 KoGPT2 사용을 위해서는 아래와 같은 작업 및 설치가 필요합니다.
 
-* LDA 모델을 사용하기 위해서는 MALLET 패키지 다운이 필요합니다. 해당 모델을 사용할 경우 [MALLET](http://mallet.cs.umass.edu/index.php, "MALLET") 에서   
-  다운 받아 사용하여 주세요.
-   
-* 저희는 SKT-AI에서 약 20GB의 한국어 데이터를 Pre-Training 시킨 [KoGPT2](https://github.com/SKT-AI/KoGPT2,"kogpt2") 모델을 사용하였습니다. 따라서 
-   KoGPT2 사용을 위해서는 아래와 같은 작업 및 설치가 필요합니다.
-  
+ ## Kogpt2 How to install
+ 
+ ```
+ git clone https://github.com/SKT-AI/KoGPT2.git
+ pip install -r requirements.txt
+ pip install .
+ 
+ ```
+ 
+ ## Usage model
 
-   ### Kogpt2 How to install
-   ```
-      git clone https://github.com/SKT-AI/KoGPT2.git
-      pip install -r requirements.txt
-      pip install .
-   ```
-      
-## License
++ 사진 첨부 하기
 
-KOGPT2와 LDA는 modified MIT 라이선스 하에 공개되어 있습니다. 해당 모델및 코드를 사용할 경우 모델 및 코드를 사용할 경우 라이선스 내용을 준수해주세요. 라이선스 내용은 [LICENSE](https://gitlab.com/jaaaamj0711/example/-/blob/master/LICENSE, "LICENSE") 파일에서 확인할 수 있습니다.  
+ 
