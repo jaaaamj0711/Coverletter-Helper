@@ -100,7 +100,7 @@
 - 저희는 SKT-AI에서 약 20GB의 한국어 데이터를 Pre-Training 시킨 KoGPT2 모델을 사용하였습니다.
 따라서 KoGPT2 사용을 위해서는 아래와 같은 작업 및 설치가 필요합니다.
 
- ## Kogpt2 How to install
+  ## Kogpt2 How to install
  
  ```
  git clone https://github.com/SKT-AI/KoGPT2.git
@@ -109,8 +109,10 @@
  
  ```
  
- ## Usage model
+## Usage model
 
 + 사진 첨부 하기
 
- 
+## License
+KOGPT2와 LDA는 modified MIT 라이선스 하에 공개되어 있습니다. 해당 모델및 코드를 사용할 경우 모델 및 코드를 사용할 경우 라이선스 내용을 준수해주세요. 라이선스 내용은 LICENSE 파일에서 확인할 수 있습니다.
+(코드의 세부적인 사항은 구글링을 통해 얻어진 자료를 참고한 것입니다.)
