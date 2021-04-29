@@ -129,4 +129,4 @@ KOGPT2와 LDA는 modified MIT 라이선스 하에 공개되어 있습니다. 해
 (코드의 세부적인 사항은 구글링을 통해 얻어진 자료를 참고한 것입니다.)
 
 
-## [분석 결과]("https://github.com/jaaaamj0711/Coverletter-Helper/blob/Feature_FastText/%E1%84%80%E1%85%AF%E1%86%AB%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B2%E1%86%AB%2C%20%E1%84%87%E1%85%A1%E1%86%A8%E1%84%86%E1%85%A7%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8%2C%20%E1%84%89%E1%85%A5%E1%84%86%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%B5%20%E1%84%87%E1%85%A1%E1%86%AF%E1%84%91%E1%85%AD%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD.pdf") 
+## [분석 결과](https://github.com/jaaaamj0711/Coverletter-Helper/blob/Feature_FastText/%E1%84%80%E1%85%AF%E1%86%AB%E1%84%83%E1%85%A9%E1%84%8B%E1%85%B2%E1%86%AB%2C%20%E1%84%87%E1%85%A1%E1%86%A8%E1%84%86%E1%85%A7%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8%2C%20%E1%84%89%E1%85%A5%E1%84%86%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%B5%20%E1%84%87%E1%85%A1%E1%86%AF%E1%84%91%E1%85%AD%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD.pdf) 
