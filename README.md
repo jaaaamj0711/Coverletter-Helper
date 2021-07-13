@@ -64,7 +64,7 @@
            |--okt_nouns_FastText_model.py     # FastText 적용(Okt.nouns 사용)
 
         |--Okt_Word2Vec
-           |--okt_Word2Vec_model.py    # Word2Ve 모델(Okt.morphs 사용)
+           |--okt_Word2Vec_model.py    # Word2Vec 모델(Okt.morphs 사용)
            |-- okt_nouns_word2vec_model.py     # Word2Ve 적용(Okt.nouns 사용)
 
         |--LDA
